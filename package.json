@@ -1,0 +1,26 @@
+{
+  "name": "config-node2",
+  "author": "Ariel Flesler <aflesler@gmail.com>",
+  "version": "1.0.0",
+  "description": "Minimalistic configuration loader for Node JS based on environment",
+  "keywords": [
+    "config",
+    "configuration",
+    "file",
+    "require",
+    "json",
+    "environment",
+    "variable",
+    "node",
+    "yaml",
+    "coffee"
+    "coffee-script"
+  ],
+  "license": "MIT",
+  "repository": "git://github.com/flesler/config-node",
+  "main": "./index.js",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {}
+}
