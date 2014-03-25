@@ -4,7 +4,7 @@
  * NODE_ENV=production node example.js -> "We are in production"
  */
 
-// NOTE: Specifying ext is only to improve
+// NOTE: Specifying ext is only to improve performance
 // You can pass {ext:''} to indicate directory
 
 var config = require('../../index')({ext:'json'});
