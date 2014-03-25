@@ -17,8 +17,8 @@
     "coffee-script"
   ],
   "license": "MIT",
-  "homepage": "http://github.com/flesler/config-node",
-  "bugs": "http://github.com/flesler/config-node/issues",
+  "homepage": "https://github.com/flesler/config-node",
+  "bugs": "https://github.com/flesler/config-node/issues",
   "repository": "git://github.com/flesler/config-node",
   "main": "./index.js",
   "engines": {
