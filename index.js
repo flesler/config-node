@@ -18,8 +18,8 @@ var config = module.exports = function(opts) {
 	// You can specify the extension on opts.ext to improve performance
 	var ext = 'ext' in opts ? opts.ext : extension(dir, env);
 	var file = path.join(dir, env) + (ext ? '.'+ext : '');
-	// directory(''), js and json are handled by native require
-	// you can pass an option named as the extension with a function that parses the file
+	// You can pass an option named as the extension with a function that parses the file
+	// else, directory(''), js and json are handled by native require
 	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
 
 	for (var key in data) {
@@ -30,14 +30,13 @@ var config = module.exports = function(opts) {
 };
 
 function extension(dir, env) {
-	var re = new RegExp(env+'(\.|$)', 'i');
 	var file = fs.readdirSync(dir).filter(function(filename) {
-		return re.test(filename);
+		return filename.indexOf(env) === 0;
 	})[0];
 
 	if (!file) {
 		throw new Error('No file found for environment '+env);
 	}
 
-	return path.extname(file).slice(1);
+	return file.slice(env.length+1);
 }
