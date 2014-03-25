@@ -15,9 +15,11 @@ var config = module.exports = function(opts) {
 	}
 
 	var env = opts.env || process.env.NODE_ENV || 'development';
-	var ext = extension(dir, env);
+	// You can specify the extension on opts.ext to improve performance
+	var ext = 'ext' in opts ? opts.ext : extension(dir, env);
 	var file = path.join(dir, env) + (ext ? '.'+ext : '');
-	// directory(''), js and json are handled by native require	
+	// directory(''), js and json are handled by native require
+	// you can pass an option named as the extension with a function that parses the file
 	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
 
 	for (var key in data) {
