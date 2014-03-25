@@ -1,5 +1,6 @@
 /**
  * Example on how to add support for YAML files
+ * - This uses the `js-yaml` module as an example, you can use any
  */
 
 // $> npm install --save js-yaml
