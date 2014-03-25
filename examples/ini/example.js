@@ -1,6 +1,7 @@
 /**
  * Example on how to add support for INI files
  * - This uses the `ini` module as an example, you can use any
+ * - Check https://github.com/isaacs/ini for further information
  */
 
 // $> npm install --save ini

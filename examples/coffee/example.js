@@ -1,6 +1,7 @@
 /**
  * Example on how to add support for Coffee-Script files
  * - This uses the `coffee-script` module as an example, you can use any
+ * - Check https://github.com/jashkenas/coffee-script for further information
  */
 
 // $> npm install --save coffee-script
