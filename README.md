@@ -13,7 +13,7 @@ var config = require('config-node')();
 console.log(config.server.port);
 ```
 
-config will contain the contents of the configuration file named as the environment variable <code>NODE_ENV</code> or <code>development</code>, on the folder <code>config/</code>.
+<code>config</code> will contain the contents of the configuration file named <code>process.env.NODE_ENV</code> or <code>'development'</code>, on the folder <code>config/</code>.<br />
 It can be a JSON, a JS that fills <code>module.exports</code> or a directory with an index.js inside.
 
 You probably noticed there's a function call in there. It needs to be added once to load the data. This is where you can put your options.
@@ -31,7 +31,7 @@ These are the defaults:
 ```js
 var config = require('config-node')({
 	dir: 'config', // where to look for files 
-	ext: null, // spoil the fun, tell me which one it is ('' for directory). Improve performance.
+	ext: null, // spoil the fun, tell me which one it is ('' for directory). Improves performance.
 	env: process.env.NODE_ENV || 'development' // set which one instead of smart defaults
 });
 ```
@@ -80,6 +80,7 @@ Check the examples to see more use cases.
 - [Convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), tuned for the mayority.
 - [Pareto principle](http://en.wikipedia.org/wiki/Pareto_principle). I aim for that 80% that needs only the 20% of the features.
 - [KISS principle](http://en.wikipedia.org/wiki/KISS_principle). It's really simple but it does the job.
+- [YAGNI](http://en.wikipedia.org/wiki/YAGNI). I prefer to add features based on requests.
 
 ## LICENSE
 
