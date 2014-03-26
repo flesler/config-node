@@ -1,4 +1,4 @@
-# Flexible lightweight configuration loader for Node
+# Flexible lightweight configuration loader
 
 ## Installation
 
@@ -62,7 +62,7 @@ Check the examples to see more use cases.
 
 ## Similar Projects
 
-- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, but too complex for me. I'd never need things like file watching (just use nodemon).
+- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, but too complex for me. I'd never need things like file watching(use nodemon).
 - [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
 - Feel free to suggest others, these are the ones I found and used for inspiration
 
@@ -71,7 +71,7 @@ Check the examples to see more use cases.
 - It's simple, the code is short and clean
 - It's extensible, it can support coffee, yaml, ini or anything else you want, just DIY.
 - It has no dependencies. If you need yaml, just include the one you prefer and pass it over.
-- It's fast. Loading configuration needs to be fast, if you pass the `ext` setting, this module is mostly a smart require.
+- It's fast. Loading configuration needs to be fast, with the <code>ext</code> option this module is mostly a smart require.
 
 ## Some concepts taken into account
 
