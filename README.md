@@ -54,6 +54,7 @@ Check the examples to see more use cases.
 - [How to use Coffee-Script files](examples/coffee)
 - [How to use INI files](examples/ini)
 - [How to use Properties files](examples/properties)
+- [How to have shared configuration files](examples/shared)
 - [How to load from a different directory](examples/custom-dir)
 - [How to keep local configuration unversioned](examples/unversioned)
 - [How to override the environment from NODE_ENV](examples/environment)
