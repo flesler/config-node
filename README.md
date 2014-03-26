@@ -64,7 +64,7 @@ Check the examples to see more use cases.
 
 ## Similar Projects
 
-- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, has outdated features (like auto-reloading, use nodemon), overly complicated IMO 
+- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, but too complex for me. I'd never need things like file watching (just use nodemon).
 - [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
 - Feel free to suggest others, these are the ones I found and used for inspiration
 
