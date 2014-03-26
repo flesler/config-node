@@ -1,10 +1,5 @@
-/**
- * @author Ariel Flesler <aflesler@gmail.com>
- * @version 1.0.0
- * Homepage: https://github.com/flesler/config-node
- */
-var path = require('path');
-var fs = require('fs');
+var path = require('path'),
+	fs = require('fs');
 
 var config = module.exports = function(opts) {
 	opts = opts || {};

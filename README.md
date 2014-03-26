@@ -1,12 +1,51 @@
-# Minimalistic configuration loader for Node JS based on environment
+# Flexible lightweight configuration loader for Node
 
 ## Installation
 
-I'm currently disputing the name config-node. Use config-node2 for now.
+I'm currently disputing the name <code>config-node</code>
 
-Using npm:
+	$ npm install config-node
 
-    $ npm install config-node2
+## Basic usage
+
+```js
+var config = require('config-node')();
+console.log(config.server.port);
+```
+
+config will contain the contents of the configuration file named as the environment variable <code>NODE_ENV</code> or <code>development</code>, on the folder <code>config/</code>.
+It can be a JSON, a JS that fills <code>module.exports</code> or a directory with an index.js inside.
+
+You probably noticed there's a function call in there. It needs to be added once to load the data. This is where you can put your options.
+You'll probably do that on your main js file, in all the other ones you only require it:
+
+```js
+var config = require('config-node');
+console.log(config.db.port);
+```
+
+## Options
+
+These are the defaults:
+
+```js
+var config = require('config-node')({
+	dir: 'config', // where to look for files 
+	ext: null, // spoil the fun, tell me which one it is ('' for directory). Improve performance.
+	env: process.env.NODE_ENV || 'development' // set which one instead of smart defaults
+});
+```
+
+In order to support more formats beyond json, js and directories. You add a file with a different extension to the config folder
+and pass an option named as the extension with a function that takes the file string data and returns an object, synchronously!
+
+```js
+var config = require('config-node')({
+	png: function(data) { return convertPNGtoObjectSomehow(data); }
+});
+```
+
+Check the examples to see more use cases.
 
 ## Examples
 
@@ -22,3 +61,46 @@ Using npm:
 - [How to override the environment from NODE_ENV](examples/environment)
 - [How to skip extension detection](examples/extension)
 - [How to encapsulate config logic](examples/encapsulate)
+
+## Similar Projects
+
+- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, has outdated features (like auto-reloading, use nodemon), overly complicated IMO 
+- [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
+- Feel free to suggest others, these are the ones I found and used for inspiration
+
+## Why use this project over others
+
+- It's simple, the code is short and clean
+- It's extensible, it can support coffee, yaml, ini or anything else you want, just DIY.
+- It has no dependencies. If you need yaml, just include the one you prefer and pass it over.
+- It's fast. Loading configuration needs to be fast, if you pass the `ext` setting, this module is mostly a smart require.
+
+## Some concepts taken into account
+
+- [Convention over configuration](http://en.wikipedia.org/wiki/Convention_over_configuration), tuned for the mayority.
+- [Pareto principle](http://en.wikipedia.org/wiki/Pareto_principle). I aim for that 80% that needs only the 20% of the features.
+- [KISS principle](http://en.wikipedia.org/wiki/KISS_principle). It's really simple but it does the job.
+
+## LICENSE
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Ariel Flesler
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
