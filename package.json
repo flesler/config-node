@@ -1,5 +1,5 @@
 {
-  "name": "config-node2",
+  "name": "config-node",
   "author": "Ariel Flesler <aflesler@gmail.com>",
   "version": "1.0.0",
   "description": "Flexible lightweight configuration loader for Node",

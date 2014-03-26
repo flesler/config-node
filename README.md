@@ -2,8 +2,6 @@
 
 ## Installation
 
-I'm currently disputing the name <code>config-node</code>
-
 	$ npm install config-node
 
 ## Basic usage
