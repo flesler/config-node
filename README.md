@@ -18,6 +18,7 @@ You probably noticed there's a function call in there. It needs to be added once
 You'll probably do that on your main js file, in all the other ones you only require it:
 
 ```js
+// in db.js
 var config = require('config-node');
 console.log(config.db.port);
 ```
@@ -64,9 +65,11 @@ Check the examples to see more use cases.
 
 ## Similar Projects
 
-- [flatiron/nconf](https://github.com/flatiron/nconf) - If you need all that, this one is the best. It has it all.
-- [lorenwest/node-config](https://github.com/lorenwest/node-config) - It's good, but too complex for me. I'd never need things like file watching(use nodemon).
+- [flatiron/nconf](https://github.com/flatiron/nconf) - If you need all that, this one is the best. It has it all
+- [lorenwest/node-config](https://github.com/lorenwest/node-config) - Good, too complex for me. I'd never need things like file watching(use nodemon)
 - [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
+- [dominictarr/rc](https://github.com/dominictarr/rc) - It's great, more oriented to loading files from outside the project
+- [pgte/konphyg](https://github.com/pgte/konphyg) - Also great, but only JSON and does failed filesystem reads in most cases
 - Feel free to suggest others, these are the ones I found and used for inspiration
 
 ## Why use this project over others

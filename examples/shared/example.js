@@ -2,7 +2,10 @@
  * Example on how to use have part of the configuration shared on all envs
  */
 
-var config = require('../../index')({env:'shared'})();
+var config = require('../../index');
+// Split into multiple lines so it's easier to understand
+config({env:'shared'});
+config();
 
 console.log(config.shared, config.message);
 
