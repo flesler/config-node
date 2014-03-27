@@ -60,7 +60,7 @@ Check the examples to see more use cases.
 - [How to keep local configuration unversioned](examples/unversioned)
 - [How to override the environment from NODE_ENV](examples/environment)
 - [How to skip extension detection](examples/extension)
-- [How to encapsulate config logic](examples/encapsulate)
+- [How to encapsulate config logic / have defaults](examples/encapsulate)
 
 ## Similar Projects
 
