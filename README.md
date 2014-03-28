@@ -11,8 +11,8 @@ var config = require('config-node')();
 console.log(config.server.port);
 ```
 
-<code>config</code> will contain the contents of the configuration file named <code>process.env.NODE_ENV</code> or <code>'development'</code>, on the folder <code>config/</code>.<br />
-It can be a JSON, a JS that fills <code>module.exports</code> or a directory with an index.js inside.
+`config` will contain the contents of the configuration file named `process.env.NODE_ENV` or `'development'`, on the folder `config/`.<br />
+It can be a JSON, a JS that fills `module.exports` or a directory with an index.js inside.
 
 You probably noticed there's a function call in there. It needs to be added once to load the data. This is where you can put your options.
 You'll probably do that on your main js file, in all the other ones you only require it:
@@ -78,7 +78,7 @@ Check the examples to see more use cases.
 - It's simple, the code is short and clean
 - It's extensible, it can support coffee, yaml, ini or anything else you want, just DIY.
 - It has no dependencies. If you need yaml, just include the one you prefer and pass it over.
-- It's fast. Loading configuration needs to be fast, with the <code>ext</code> option this module is mostly a smart require.
+- It's fast. Loading configuration needs to be fast, with the `ext` option this module is mostly a smart require.
 
 ## Some concepts taken into account
 
