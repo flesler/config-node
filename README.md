@@ -70,6 +70,7 @@ Check the examples to see more use cases.
 - [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
 - [dominictarr/rc](https://github.com/dominictarr/rc) - It's great, more oriented to loading files from outside the project
 - [pgte/konphyg](https://github.com/pgte/konphyg) - Also great, but only JSON and does failed filesystem reads in most cases
+- [scottmotte/dotenv](https://github.com/scottmotte/dotenv) - Loads environment variables from .env file directly into `process.env`
 - Feel free to suggest others, these are the ones I found and used for inspiration
 
 ## Why use this project over others
