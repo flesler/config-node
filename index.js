@@ -14,7 +14,7 @@ var config = module.exports = function(opts) {
 	var ext = 'ext' in opts ? opts.ext : extension(dir, env);
 	var file = path.join(dir, env) + (ext ? '.'+ext : '');
 	// You can pass an option named as the extension with a function that parses the file
-	// else, directory(''), js and json are handled by native require
+	// else handled by native require() (directory(''), js, json and others) 
 	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
 
 	for (var key in data) {

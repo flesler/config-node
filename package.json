@@ -21,9 +21,16 @@
   "bugs": "https://github.com/flesler/config-node/issues",
   "repository": "git://github.com/flesler/config-node",
   "main": "./index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha test/*.js"
+  },
   "engines": {
     "node": "*",
     "npm": "*"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*"
+  }
 }
