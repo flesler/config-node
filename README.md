@@ -2,7 +2,9 @@
 
 ## Installation
 
-	$ npm install config-node
+``` bash
+$ npm install config-node
+```
 
 ## Basic usage
 
@@ -86,6 +88,14 @@ Check the examples to see more use cases.
 - [Pareto principle](http://en.wikipedia.org/wiki/Pareto_principle). I aim for that 80% that needs only the 20% of the features.
 - [KISS principle](http://en.wikipedia.org/wiki/KISS_principle). It's really simple but it does the job.
 - [YAGNI](http://en.wikipedia.org/wiki/YAGNI). I prefer to add features based on requests.
+
+## Tests
+
+To run the test suite:
+
+``` bash
+$ npm test
+```
 
 ## LICENSE
 
