@@ -43,6 +43,21 @@ describe('config-node', function() {
 			config({env:'env'});
 			expect(config.env).to.equal('env');
 		});
+
+		it('should override properties when loading a second file', function() {
+			config()({env:'production'});
+			expect(config.env).to.equal('production');
+		});
+
+		it('should merge objects when loading a second file', function() {
+			config({env:'deep'})({env:'deep2'});
+			
+			expect(config.top.number).to.equal(5);
+			expect(config.deep.prop).to.equal('val2');
+			expect(config.deep.other).to.equal('val');
+			expect(config.deep.new).to.equal('val');
+			expect(config.dontMergeArray).to.deep.equal([4, 5]);
+		});
 	});
 
 	describe('dir', function() {

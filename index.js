@@ -16,10 +16,7 @@ var config = module.exports = function(opts) {
 	// You can pass an option named as the extension with a function that parses the file
 	// else handled by native require() (directory(''), js, json and others) 
 	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
-
-	for (var key in data) {
-		config[key] = data[key];
-	}
+	copy(config, data);
 
 	return config;
 };
@@ -34,4 +31,20 @@ function extension(dir, env) {
 	}
 
 	return file.slice(env.length+1);
+}
+
+function copy(dest, src) {
+	for (var key in src) {
+		var d = dest[key];
+		var s = src[key];
+		if (object(d) && object(s)) {
+			copy(d, s);
+		} else {
+			dest[key] = s;
+		}
+	}
+}
+
+function object(obj) {
+	return Object.prototype.toString.call(obj) === '[object Object]';
 }

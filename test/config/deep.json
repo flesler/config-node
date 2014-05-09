@@ -1,0 +1,8 @@
+{
+	"top":"level",
+	"deep": {
+		"prop":"val",
+		"other":"val"
+	},
+	"dontMergeArray":[1, 2, 3]
+}

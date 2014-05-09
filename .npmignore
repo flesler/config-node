@@ -11,3 +11,4 @@ test/
 .DS_Store
 coverage.html
 lib-cov
+CHANGELOG

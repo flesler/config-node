@@ -1,0 +1,8 @@
+{
+	"top":{"number":5},
+	"deep": {
+		"prop":"val2",
+		"new":"val"
+	},
+	"dontMergeArray":[4, 5]
+}
