@@ -1,5 +1,6 @@
 var path = require('path'),
-	fs = require('fs');
+	fs = require('fs'),
+	extend = require('object-extend');
 
 var config = module.exports = function(opts) {
 	opts = opts || {};
@@ -17,9 +18,7 @@ var config = module.exports = function(opts) {
 	// else handled by native require() (directory(''), js, json and others) 
 	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
 
-	for (var key in data) {
-		config[key] = data[key];
-	}
+	extend(config, data);
 
 	return config;
 };
