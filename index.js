@@ -27,7 +27,7 @@ function extension(dir, env) {
 		if (filename.indexOf(prefix) === 0) {
 			return true;
 		}
-		else if (fs.statSync(path.join(dir, filename)).isDirectory()) {
+		if (fs.statSync(path.join(dir, filename)).isDirectory()) {
 			return filename.indexOf(env) === 0;
 		}
 	})[0];
