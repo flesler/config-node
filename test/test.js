@@ -132,9 +132,6 @@ describe('config-node', function() {
 			expect(config.ext).to.equal('json');
 			expect(config.called).to.be.true;
 		});
-
-		// TODO: There are some ambiguous or inconsistent cases to revise
-		// Like config({env:'file'}) works but config({env:'file', ext:'json'}) fails
 	});
 
 	describe('parsers', function() {
