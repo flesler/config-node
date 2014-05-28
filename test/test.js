@@ -103,6 +103,24 @@ describe('config-node', function() {
 			expect(config.ext).to.equal('json');
 		});
 
+		it('should not load files that begin with env followed by a character other than "."', function() {
+			expect(function () {
+				config({env: 'should-not-be'});
+			}).to.throw('No file found for environment should-not-be');
+		});
+
+		it('should load files that begin with env followed by a "."', function() {
+			function parser(data) {
+				var obj = JSON.parse(data);
+				obj.called = true;
+				return obj;
+			}
+			config({env:'should-be', 'loaded.json': parser});
+			expect(config.env).to.equal('should-be');
+			expect(config.ext).to.equal('loaded.json');
+			expect(config.called).to.be.true;
+		});
+
 		it('should work as usual when the ext has dots', function() {
 			function parser(data) {
 				var obj = JSON.parse(data);
