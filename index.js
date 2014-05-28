@@ -22,15 +22,20 @@ var config = module.exports = function(opts) {
 };
 
 function extension(dir, env) {
-	var file = fs.readdirSync(dir).filter(function(filename) {
-		return filename.indexOf(env) === 0;
+	var prefix = env + '.';
+	var file = fs.readdirSync(dir).sort().filter(function(filename) {
+		if (filename.indexOf(prefix) === 0) {
+			return true;
+		}
+		else if (fs.statSync(path.join(dir, filename)).isDirectory()) {
+			return filename.indexOf(env) === 0;
+		}
 	})[0];
 
 	if (!file) {
 		throw new Error('No file found for environment '+env);
 	}
-
-	return file.slice(env.length+1);
+	return file.slice(prefix.length);
 }
 
 function copy(dest, src) {
