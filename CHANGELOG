@@ -1,3 +1,6 @@
+1.2.2
+- Removed support for multi-extension files being partially matched in order to avoid confusion
+
 1.2.1
 - No need for statSync anymore, will improve performance
 

@@ -22,18 +22,17 @@ var config = module.exports = function(opts) {
 };
 
 function extension(dir, env) {
-	var prefix = env + '.';
 	var file = fs.readdirSync(dir).sort().filter(function(filename) {
 		// Directory
 		return filename === env ||
 			// File
-			filename.indexOf(prefix) === 0;
+			filename.split('.').slice(0, -1).join('.') === env;
 	})[0];
 
 	if (!file) {
 		throw new Error('No file found for environment '+env);
 	}
-	return file.slice(prefix.length);
+	return file.slice(env.length+1);
 }
 
 function copy(dest, src) {
