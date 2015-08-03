@@ -5,9 +5,7 @@ var config = module.exports = function(opts) {
 	opts = opts || {};
 
 	var dir = opts.dir || 'config';
-	if (dir.indexOf('.') === -1) {
-		dir = path.join(process.cwd(), dir);
-	}
+	dir = path.resolve(process.cwd(), dir);
 
 	var env = opts.env || process.env.NODE_ENV || 'development';
 	// You can specify the extension on opts.ext to improve performance
