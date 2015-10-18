@@ -2,6 +2,8 @@
 
 ## Installation
 
+[![NPM](https://nodei.co/npm/config-node.png?compact=true)](https://npmjs.org/package/config-node)
+
 ``` bash
 $ npm install config-node
 ```
