@@ -13,9 +13,11 @@ var config = module.exports = function(opts) {
 	// You can specify the extension on opts.ext to improve performance
 	var ext = 'ext' in opts ? opts.ext : extension(dir, env);
 	var file = path.join(dir, env) + (ext ? '.'+ext : '');
+  // Tou can pass parameters to custom parser on opts.params
+  var params = opts.params || {};
 	// You can pass an option named as the extension with a function that parses the file
-	// else handled by native require() (directory(''), js, json and others) 
-	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8')) : require(file);
+	// else handled by native require() (directory(''), js, json and others)
+	var data = ext in opts ? opts[ext](fs.readFileSync(file, 'utf8'), params) : require(file);
 	copy(config, data);
 
 	return config;
