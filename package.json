@@ -1,7 +1,7 @@
 {
   "name": "config-node",
   "author": "Ariel Flesler <aflesler@gmail.com>",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "Flexible lightweight configuration loader for Node",
   "keywords": [
     "config",
@@ -22,7 +22,8 @@
   "repository": "git://github.com/flesler/config-node",
   "main": "./index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/*.js"
+    "test": "mocha -bS --inline-diffs test/*.js",
+    "prepush": "npm test -- --reporter dot"
   },
   "engines": {
     "node": "*",
@@ -30,7 +31,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "mocha": "*",
-    "chai": "*"
+    "chai": "3.5.0",
+    "husky": "0.11.4",
+    "mocha": "2.5.3"
   }
 }

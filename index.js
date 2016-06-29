@@ -4,11 +4,8 @@ var path = require('path'),
 var config = module.exports = function(opts) {
 	opts = opts || {};
 
-	var dir = opts.dir || 'config';
-	if (dir.indexOf('.') === -1) {
-		dir = path.join(process.cwd(), dir);
-	}
-
+	// path.resolve() will take absolute paths and CWD into account
+	var dir = path.resolve(opts.dir || 'config');
 	var env = opts.env || process.env.NODE_ENV || 'development';
 	// You can specify the extension on opts.ext to improve performance
 	var ext = 'ext' in opts ? opts.ext : extension(dir, env);

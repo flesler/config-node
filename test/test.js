@@ -1,5 +1,7 @@
+/*jshint -W030 */
 var expect = require('chai').expect,
-	fs = require('fs');
+	fs = require('fs'),
+	config;
 
 describe('config-node', function() {
 	before(function() {
@@ -69,6 +71,20 @@ describe('config-node', function() {
 		it('should load from another directory if "dir" is given', function() {
 			config({dir:'settings'});
 			expect(config.dir).to.equal('settings');
+		});
+
+		it('should support relative paths', function() {
+			config({dir:'./config'});
+			expect(config.dir).to.equal('config');
+			
+			config({dir:'../test/settings'});
+			expect(config.dir).to.equal('settings');
+		});
+
+		it('should support absolute paths', function() {
+			// FIXME: Won't work on Windows (path.resolve() doesn't fix C:/)
+			config({dir:__dirname+'/config'});
+			expect(config.dir).to.equal('config');
 		});
 
 		// TODO: Test absolute dirs, also ones with "."
