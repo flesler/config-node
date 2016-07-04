@@ -3,6 +3,10 @@ var expect = require('chai').expect,
 	fs = require('fs'),
 	config;
 
+function should(msg, fn) {
+	it('should '+msg, fn);
+}
+
 describe('config-node', function() {
 	before(function() {
 		process.chdir('test');
@@ -18,40 +22,40 @@ describe('config-node', function() {
 	});
 
 	describe('basic', function() {
-		it('should be a function', function() {
+		should('be a function', function() {
 			expect(config).to.be.a('function');
 			expect(config.length).to.equal(1);
 		});
 
-		it('should return itself', function() {
+		should('return itself', function() {
 			expect(config()).to.equal(config);
 		});
 	});
 
 	describe('env', function() {
-		it('should default to development when no NODE_ENV', function() {
+		should('default to development when no NODE_ENV', function() {
 			config();
 			expect(config.env).to.equal('development');
 		});
 
-		it('should default to NODE_ENV if present', function() {
+		should('default to NODE_ENV if present', function() {
 			process.env.NODE_ENV = 'production';
 			config();
 			expect(config.env).to.equal('production');
 		});
 
-		it('should give "env" the highest priority', function() {
+		should('give "env" the highest priority', function() {
 			process.env.NODE_ENV = 'production';
 			config({env:'env'});
 			expect(config.env).to.equal('env');
 		});
 
-		it('should override properties when loading a second file', function() {
+		should('override properties when loading a second file', function() {
 			config()({env:'production'});
 			expect(config.env).to.equal('production');
 		});
 
-		it('should merge objects when loading a second file', function() {
+		should('merge objects when loading a second file', function() {
 			config({env:'deep'})({env:'deep2'});
 			
 			expect(config.top.number).to.equal(5);
@@ -63,17 +67,17 @@ describe('config-node', function() {
 	});
 
 	describe('dir', function() {
-		it('should load from config/ by default', function() {
+		should('load from config/ by default', function() {
 			config();
 			expect(config.dir).to.equal('config');
 		});
 
-		it('should load from another directory if "dir" is given', function() {
+		should('load from another directory if "dir" is given', function() {
 			config({dir:'settings'});
 			expect(config.dir).to.equal('settings');
 		});
 
-		it('should support relative paths', function() {
+		should('support relative paths', function() {
 			config({dir:'./config'});
 			expect(config.dir).to.equal('config');
 			
@@ -81,7 +85,7 @@ describe('config-node', function() {
 			expect(config.dir).to.equal('settings');
 		});
 
-		it('should support absolute paths', function() {
+		should('support absolute paths', function() {
 			// FIXME: Won't work on Windows (path.resolve() doesn't fix C:/)
 			config({dir:__dirname+'/config'});
 			expect(config.dir).to.equal('config');
@@ -91,7 +95,7 @@ describe('config-node', function() {
 	});
 
 	describe('ext', function() {
-		it('should guess the ext when non is given', function() {
+		should('guess the ext when non is given', function() {
 			config();
 			expect(config.ext).to.equal('json');
 
@@ -99,7 +103,7 @@ describe('config-node', function() {
 			expect(config.ext).to.equal('js');
 		});
 
-		it('should respect ext when given', function() {
+		should('respect ext when given', function() {
 			config({env:'ambiguous', ext:'js'});
 			expect(config.ext).to.equal('js');
 			
@@ -107,26 +111,26 @@ describe('config-node', function() {
 			expect(config.ext).to.equal('json');
 		});
 
-		it('should load index.js when a folder is found', function() {
+		should('load index.js when a folder is found', function() {
 			config({env:'folder'});
 			expect(config.number).to.equal(6);
 			expect(config.db).to.have.property('port', 1337);
 		});
 
-		it('should work as usual when the env has dots', function() {
+		should('work as usual when the env has dots', function() {
 			config({env:'file.in'});
 			expect(config.env).to.equal('file.in');
 			expect(config.ext).to.equal('json');
 		});
 
-		it('should not load files whose filename only starts with env', function() {
+		should('not load files whose filename only starts with env', function() {
 			expect(function() {
 				// Should not match development.json
 				config({env: 'dev'});
 			}).to.throw('No file found for environment dev');
 		});
 			
-		it('should not load files whose filename only starts with env followed by a dot', function() {
+		should('not load files whose filename only starts with env followed by a dot', function() {
 			expect(function() {
 				// Should not match file.in.json
 				config({env: 'file'});
@@ -135,20 +139,20 @@ describe('config-node', function() {
 	});
 
 	describe('parsers', function() {
-		it('should give priority to given parsers', function() {
+		should('give priority to given parsers', function() {
 			function parser(_) { return {worked:true}; }
 
 			config({json: parser});
 			expect(config.worked).to.be.true;
 		});
 
-		it('should work for non standard extensions', function() {
+		should('work for non standard extensions', function() {
 			function parser(_) { return {worked:true}; }
 			config({env:'very', ext:'odd', odd: parser});
 			expect(config.worked).to.be.true;
 		});
 
-		it('should pass file contents to parser', function() {
+		should('pass file contents to parser', function() {
 			function checker(data) {
 				var file = fs.readFileSync('config/development.json', 'utf8');
 				expect(data).to.equal(file);
@@ -159,7 +163,7 @@ describe('config-node', function() {
 			expect(config.called).to.be.true;
 		});
 
-		it('should support returned array', function() {
+		should('support returned array', function() {
 			function array(_) { return ['a', 'b']; }
 
 			config({json: array});
@@ -169,37 +173,37 @@ describe('config-node', function() {
 	});
 
 	describe('errors', function() {
-		it('should throw a controlled error when the file is not found and ext is not given', function() {
+		should('throw a controlled error when the file is not found and ext is not given', function() {
 			expect(function() { 
 				config({env:'404'}); 
 			}).to.throw('No file found for environment 404');
 		});
 
-		it('should throw a require error when the file is not found, ext is given but no parser', function() {
+		should('throw a require error when the file is not found, ext is given but no parser', function() {
 			expect(function() { 
 				config({env:'404', ext:'not'}); 
 			}).to.throw('Cannot find module');
 		});
 
-		it('should throw an ENOENT when the file is not found, ext and parser are given', function() {
+		should('throw an ENOENT when the file is not found, ext and parser are given', function() {
 			expect(function() { 
 				config({env:'404', ext:'not', not:function(_){} }); 
 			}).to.throw('ENOENT');
 		});
 
-		it('should throw a require error when a folder is required and no index.js is found', function() {
+		should('throw a require error when a folder is required and no index.js is found', function() {
 			expect(function() { 
 				config({env:'empty'}); 
 			}).to.throw('Cannot find module');
 		});
 
-		it('should throw a SyntaxError when parsing fails', function() {
+		should('throw a SyntaxError when parsing fails', function() {
 			expect(function() { 
 				config({env:'invalid'}); 
 			}).to.throw(SyntaxError);
 		});
 
-		it('should let an error rise when thrown by a custom parser', function() {
+		should('let an error rise when thrown by a custom parser', function() {
 			var err = new Error(':)');
 			expect(function() { 
 				config({json:function(){
