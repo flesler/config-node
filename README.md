@@ -70,7 +70,7 @@ Check the examples to see more use cases.
 ## Similar Projects
 
 - [flatiron/nconf](https://github.com/flatiron/nconf) - If you need all that, this one is the best. It has it all
-- [lorenwest/node-config](https://github.com/lorenwest/node-config) - Good, too complex for me. I'd never need things like file watching(use nodemon)
+- [lorenwest/node-config](https://github.com/lorenwest/node-config) - Good alternative with hierarchical configuration merging, still heavier than I need for simple cases
 - [dominictarr/config-chain](https://github.com/dominictarr/config-chain) - Very cool one, too complex for most simple cases
 - [dominictarr/rc](https://github.com/dominictarr/rc) - It's great, more oriented to loading files from outside the project
 - [pgte/konphyg](https://github.com/pgte/konphyg) - Also great, but only JSON and does failed filesystem reads in most cases
